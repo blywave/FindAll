@@ -61,10 +61,11 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                if (!_set.Contains(pl)) _set.Add(pl);
-                pl.GetComponent<PlankEngine>().AnimationClipChange("Nope", true);
-                pl.GetComponentInChildren<BoxCollider>().enabled = false;
-                Invoke("Misstake", 1.2f);
+                    pl.GetComponent<PlankEngine>().AnimationClipChange("Nope", true);
+                    pl.GetComponentInChildren<BoxCollider>().enabled = false;
+                    _gameInput.enabled = false;
+                    Invoke("Misstake", 1.2f);
+                    if (!_set.Contains(pl)) _set.Add(pl);
             }
         }
     }
@@ -92,7 +93,6 @@ public class GameManager : MonoBehaviour
     {
         _heals--;
         _uiManager.Damage(_heals);
-        _gameInput.enabled = false;
         Invoke("WaitInput", 0.3f) ;
         if (_set.Count > 0)
         {
